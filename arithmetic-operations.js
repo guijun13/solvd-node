@@ -35,10 +35,6 @@ class StringNumber {
     const result = [];
     let borrow = 0;
 
-    if (this.value < num) {
-      return `Input value should be bigger than ${this.value}`;
-    }
-
     for (let i = 0; i < maxLen; i++) {
       const digit1 = i < len1 ? parseInt(this.value.charAt(len1 - 1 - i)) : 0;
       const digit2 = i < len2 ? parseInt(num.charAt(len2 - 1 - i)) : 0;
@@ -90,6 +86,6 @@ class StringNumber {
 
 const number = new StringNumber('123');
 console.log(`Addition: ${number.addString('2')}`); // Output: "125"
-console.log(`Subtration: ${number.subtractString('223')}`); // Output: "100"
+console.log(`Subtration: ${number.subtractString('23')}`); // Output: "100"
 console.log(`Division: ${number.divideString('3')}`); // Output: "41"
 console.log(`Multiplication: ${number.multiplyString('10')}`); // Output: "1230"
