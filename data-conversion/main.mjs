@@ -12,15 +12,9 @@ console.log(
   addValues(2938192389213891023819023810293812093, 2938192389213891023819023810293812093)
 ); // 5.876384778426782e+36
 console.log(addValues('1', '2')); // 12
-console.log(addValues('1', 2)); // 12
-console.log(addValues(true, false)); // 1
-console.log(addValues(true, 1)); // 2
-console.log(addValues(false, 2)); // 2
-console.log(addValues(false, '2')); // 2
-console.log(addValues('true', 1)); // true1
-console.log(addValues(null, 2)); // 2
-console.log(addValues(undefined, 2)); // NaN
-console.log(addValues(1, { firstName: 'John', lastName: 'Doe', age: 50, eyeColor: 'blue' })); // 1[object Object]
+console.log(addValues(true, false));
+console.log(addValues(true, true));
+console.log(addValues(false, false));
 
 console.log('\nstringifyValue');
 console.log(stringifyValue({ firstName: 'John', lastName: 'Doe', age: 50, eyeColor: 'blue' })); // {"firstName":"John","lastName":"Doe","age":50,"eyeColor":"blue"}

@@ -1,5 +1,16 @@
 export function addValues(value1, value2) {
-  return value1 + value2;
+  if (typeof value1 !== typeof value2) {
+    throw new Error('Values must be of the same type');
+  }
+  if (
+    (typeof value1 === 'number' && typeof value2 === 'number') ||
+    (typeof value1 === 'string' && typeof value2 === 'string')
+  ) {
+    return value1 + value2;
+  }
+  if (typeof value1 === 'boolean' && typeof value2 === 'boolean') {
+    return value1 || value2;
+  }
 }
 
 export function stringifyValue(value) {
@@ -33,7 +44,7 @@ export function convertToNumber(value) {
 export function coerceToType(value, type) {
   switch (type) {
     case 'string':
-      return String(value);
+      return stringifyValue(value);
     case 'number':
       return convertToNumber(value);
     case 'bigint':
