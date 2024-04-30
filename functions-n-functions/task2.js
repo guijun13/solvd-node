@@ -3,32 +3,26 @@ const studentsList = [
     firstName: 'John',
     lastName: 'Doe',
     grade: 5,
-    favoriteQuote: 'To be or not to be',
   },
   {
     firstName: 'Jane',
     lastName: 'Smith',
     grade: 6,
-    favoriteQuote: 'The only way to do great work is to love what you do.',
   },
   {
     firstName: 'Emily',
     lastName: 'Jones',
     grade: 7,
-    favoriteQuote: 'The only thing we have to fear is fear itself.',
   },
   {
     firstName: 'Peter',
     lastName: 'Saints',
     grade: 10,
-    favoriteQuote: 'I have a dream',
   },
   {
     firstName: 'James',
     lastName: 'Brown',
     grade: 9,
-    favoriteQuote:
-      'Ask not what your country can do for you – ask what you can do for your country.',
   },
 ];
 
@@ -44,7 +38,7 @@ const compose =
     fns.reduceRight((v, f) => f(v), x);
 
 function toLowerCaseAndSplit(studentList) {
-  return studentList.flatMap((student) => student.favoriteQuote.toLowerCase().split(' '));
+  return studentList.flatMap((student) => student.toLowerCase().split(' '));
 }
 
 function filterUnique(words) {
@@ -61,7 +55,7 @@ function sortWords(words) {
 }
 
 const filterUniqueWords = compose(sortWords, filterUnique, toLowerCaseAndSplit);
-console.log(filterUniqueWords(studentsList));
+console.log(filterUniqueWords(getFullName(studentsList)));
 
 function getAverageGrade(studentsList) {
   const totalGrade = studentsList.reduce((total, student) => {
