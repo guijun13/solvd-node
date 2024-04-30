@@ -6,13 +6,21 @@ const person = {
   age: 30,
   email: 'john.doe@example.com',
   updateInfo: function (newData) {
-    this.firstName = newData.firstName;
-    this.age = newData.age;
+    for (let key in newData) {
+      if (this.hasOwnProperty(key) && Object.getOwnPropertyDescriptor(this, key).writable) {
+        this[key] = newData[key];
+      }
+    }
   },
   address: {},
 };
 
-person.updateInfo({ firstName: 'Jane', age: 32 });
+person.updateInfo({
+  firstName: 'Jane',
+  lastName: 'Smith',
+  age: 32,
+  email: 'janesmith123@gmail.com',
+});
 
 Object.defineProperties(person, {
   firstName: { writable: false },
@@ -22,7 +30,5 @@ Object.defineProperties(person, {
   address: { configurable: false, enumerable: false },
 });
 // person.firstName = 'Pedrin'; // not possible
-
-// person.updateInfo({ firstName: 'Josh', age: 23 }); // will not work
 
 console.log(person);
