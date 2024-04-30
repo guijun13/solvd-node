@@ -38,15 +38,29 @@ function getFullName(studentsList) {
 
 console.log(getFullName(studentsList)); // ["John Doe", "Jane Smith", "Emily Jones", "Peter Saints", "James Brown"]
 
-function filterUniqueWords(studentList) {
-  return studentList
-    .map((student) => student.favoriteQuote)
-    .join(' ')
-    .split(' ')
-    .filter((word, index, array) => array.indexOf(word) === index)
-    .sort();
+const compose =
+  (...fns) =>
+  (x) =>
+    fns.reduceRight((v, f) => f(v), x);
+
+function toLowerCaseAndSplit(studentList) {
+  return studentList.flatMap((student) => student.favoriteQuote.toLowerCase().split(' '));
 }
 
+function filterUnique(words) {
+  return words.reduce((uniqueWords, word) => {
+    if (!uniqueWords.includes(word)) {
+      uniqueWords.push(word);
+    }
+    return uniqueWords;
+  }, []);
+}
+
+function sortWords(words) {
+  return words.sort();
+}
+
+const filterUniqueWords = compose(sortWords, filterUnique, toLowerCaseAndSplit);
 console.log(filterUniqueWords(studentsList));
 
 function getAverageGrade(studentsList) {
