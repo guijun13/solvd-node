@@ -15,13 +15,6 @@ const person = {
   address: {},
 };
 
-person.updateInfo({
-  firstName: 'Jane',
-  lastName: 'Smith',
-  age: 32,
-  email: 'janesmith123@gmail.com',
-});
-
 Object.defineProperties(person, {
   firstName: { writable: false },
   lastName: { writable: false },
@@ -29,6 +22,13 @@ Object.defineProperties(person, {
   email: { writable: false },
   address: { configurable: false, enumerable: false },
 });
-// person.firstName = 'Pedrin'; // not possible
+// person.firstName = 'James'; // not possible
+
+person.updateInfo({
+  firstName: 'Jane',
+  lastName: 'Smith',
+  age: 32,
+  email: 'janesmith123@gmail.com',
+});
 
 console.log(person);
