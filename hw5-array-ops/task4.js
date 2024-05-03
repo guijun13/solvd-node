@@ -4,8 +4,8 @@ function getArrayIntersection(firstArray, secondArray) {
 }
 
 function getArrayUnion(firstArray, secondArray) {
-  const uniqueElements = firstArray.filter((value) => !secondArray.includes(value));
-  return uniqueElements;
+  const uniqueElements = [...new Set([...firstArray, ...secondArray])];
+  return uniqueElements.sort();
 }
 
 console.log(getArrayIntersection([1, 2, 3, 4, 5, 6, 7], [1, 6, 7]));
