@@ -8,22 +8,16 @@ const objectsArray = [
   { name: 'Michael' },
 ];
 
-function customFilterUnique(array, callback) {
-  const uniqueValues = [];
-  const uniqueObjects = [];
-
-  array.forEach((item) => {
-    const value = callback(item);
-
-    if (!uniqueValues.includes(value)) {
-      uniqueValues.push(value);
-      uniqueObjects.push(item);
-    }
+const filterUniqueNames = (array, callback) => {
+  const names = array.map((obj) => obj.name);
+  const uniqueNames = names.filter((name, index) => {
+    return names.indexOf(name) === index && callback(name, index, names);
   });
+  return array.filter((obj) => uniqueNames.includes(obj.name));
+};
 
-  return uniqueObjects;
-}
+const uniqueObjects = filterUniqueNames(objectsArray, (name, index, names) => {
+  return names.indexOf(name) === names.lastIndexOf(name);
+});
 
-const filterCallback = (obj) => obj.name;
-
-console.log(customFilterUnique(objectsArray, filterCallback));
+console.log(uniqueObjects);
